@@ -2,46 +2,27 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "1mb" }));
 
-// health check
+const PORT = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.send("Noor Assistant Server is running ✅");
+});
+
 app.get("/health", (req, res) => {
   res.json({ ok: true });
 });
 
-// chat endpoint
 app.post("/chat", (req, res) => {
-  const msg = req.body.message;
+  const msg = (req.body?.message || "").trim();
+  if (!msg) return res.json({ ok: true, reply: "اكتب سؤالك 😊" });
 
-  if (!msg) {
-    return res.json({ reply: "ابعت رسالة الأول 😊" });
-  }
-
-  // ردود مؤقتة
-  if (msg.includes("الصباح")) {
-    return res.json({ reply: "اذكار الصباح: اللهم بك أصبحنا..." });
-  }
-
-  if (msg.includes("المساء")) {
-    return res.json({ reply: "اذكار المساء: اللهم بك أمسينا..." });
-  }
-
-  if (msg.includes("اركان الاسلام")) {
-    return res.json({
-      reply:
-        "أركان الإسلام هي: الشهادة، الصلاة، الزكاة، الصوم، الحج 🌙",
-    });
-  }
-
-  return res.json({
-    reply: "تمام ✅ السيرفر شغال بس لسه AI مش متوصل",
-  });
+  // رد تجريبي للتأكد إن AppCreator متصل
+  res.json({ ok: true, reply: `وصلني ✅: ${msg}` });
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log("Server running on port " + PORT);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Server running on port:", PORT);
 });
