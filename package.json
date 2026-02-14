@@ -3,18 +3,11 @@
   "version": "1.0.0",
   "description": "Noor Islamic Assistant Server",
   "main": "server.js",
-  "type": "commonjs",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [
-    "noor",
-    "assistant",
-    "islam",
-    "chatbot"
-  ],
-  "author": "Noor Islam",
-  "license": "MIT",
+  "author": "Noor",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5"
