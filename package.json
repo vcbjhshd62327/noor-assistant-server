@@ -1,9 +1,19 @@
 {
-  "name": "noor-islamic-assistant",
+  "name": "noor-assistant-server",
   "version": "1.0.0",
-  "type": "module",
+  "description": "Islamic AI Assistant Server",
   "main": "server.js",
-  "scripts": { "start": "node server.js" },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "islam",
+    "assistant",
+    "nodejs",
+    "api"
+  ],
+  "author": "Seif",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
     "cors": "^2.8.5"
